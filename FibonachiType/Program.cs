@@ -32,7 +32,7 @@ namespace FibonacciType
     }
     class Program
     {
-        public static void PrintFibonachiTopHundred(Fibonacci fibList)
+        public static void PrintFibonacciTopHundred(Fibonacci fibList)
         {
             Console.WriteLine(" ***** Fibonacci numbers *****");
             Console.WriteLine($"\tfrom 0 till 100");
@@ -43,7 +43,7 @@ namespace FibonacciType
         }
         static void Main(string[] args)
         {
-            PrintFibonachiTopHundred(new Fibonacci(100));
+            PrintFibonacciTopHundred(new Fibonacci(100));
         }
     }
 }
