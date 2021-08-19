@@ -1,49 +1,55 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
-namespace FibonacciType
+namespace FibonachiType
 {
-    class Fibonacci
+    class Fibonachi : IEnumerable<int>
     {
-        private readonly List<int> FibonacciList;
-        public Fibonacci(int top)
+        private int first;
+        private int second;
+        private readonly int topNumber;
+        public Fibonachi(int top)
         {
-            FibonacciList = CreateFibList(top);
+            first = 0;
+            second = 1;
+            topNumber = top;
         }
-        private List<int> CreateFibList(int top)
+        public IEnumerable<int> ReturnFibNumbers()
         {
-            List<int> fibList = new();
-            int a = 0;
-            int b = 1;
-            fibList.Add(a);
-            fibList.Add(b);
-            for (int i = 0; i <= top; i++)
+            for (int i = 0; i <= topNumber; i++)
             {
-                var temp = a;
-                a = b;
-                fibList.Add(b += temp);
+                var temp = first;
+                first = second;
+                second += temp;
+                yield return second;
             }
-            return fibList;
         }
         public IEnumerator<int> GetEnumerator()
         {
-            return FibonacciList.GetEnumerator();
+            return ReturnFibNumbers().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
     class Program
     {
-        public static void PrintFibonacciTopHundred(Fibonacci fibList)
+        public static void PrintFibonachiTopHundred(Fibonachi fibs)
         {
             Console.WriteLine(" ***** Fibonacci numbers *****");
             Console.WriteLine($"\tfrom 0 till 100");
-            foreach (var item in fibList)
+            Console.WriteLine("0\n1");
+            foreach (var item in fibs)
             {
                 Console.WriteLine(item);
             }
         }
         static void Main(string[] args)
         {
-            PrintFibonacciTopHundred(new Fibonacci(100));
+            PrintFibonachiTopHundred(new Fibonachi(100));
         }
     }
 }
