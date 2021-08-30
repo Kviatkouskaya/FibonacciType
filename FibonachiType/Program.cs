@@ -8,22 +8,28 @@ namespace FibonachiType
     {
         private int first;
         private int second;
-        private readonly int topNumber;
-        public Fibonachi(int top)
+        //private readonly int topNumber;
+        public Fibonachi()
         {
             first = 0;
             second = 1;
-            topNumber = top;
+            //topNumber = top;
         }
         public IEnumerable<int> ReturnFibNumbers()
         {
-            for (int i = 0; i <= topNumber; i++)
+            List<int> nums = new();
+            for (var i = 0; ; i++)
             {
+                if (i == 100)
+                {
+                    break;
+                }
                 var temp = first;
                 first = second;
                 second += temp;
-                yield return second;
+                nums.Add(second);
             }
+            return nums;
         }
         public IEnumerator<int> GetEnumerator()
         {
@@ -49,7 +55,7 @@ namespace FibonachiType
         }
         static void Main(string[] args)
         {
-            PrintFibonachiTopHundred(new Fibonachi(100));
+            PrintFibonachiTopHundred(new Fibonachi());
         }
     }
 }
